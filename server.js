@@ -45,7 +45,7 @@ console.log(jsoned)
 // } else {
 // console.log("invalid secret from " + req.connection.remoteAddress);
 // }
-
+req.end()
 } catch (e) {
 // An error has occured, handle it, by e.g. logging it
 console.log("Error. Likely caused by an invalid POST from " + req.connection.remoteAddress + ":");
