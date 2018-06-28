@@ -32,6 +32,8 @@ console.log("sending validation")
 app.post('/meraki', function(req, res){
 try {
 var jsoned = req.body.data;
+console.log(jsoned)
+console.log("secret"+jsoned.secret)
 if (jsoned.secret == secret) {
 for (i=0; i<jsoned.probing.length; i++) {
 console.log("client " + jsoned.probing[i].client_mac + " seen on ap " + jsoned.probing[i].ap_mac + " with rssi " + jsoned.probing[i].rssi + " at " + jsoned.probing[i].last_seen);
