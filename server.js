@@ -28,7 +28,7 @@ console.log("sending validation")
 
 
 app.post('/meraki', function(req, res){
-    console.log(req.body)
+    console.log(req)
 // try {
 // var jsoned = JSON.parse(req.body.data);
 // if (jsoned.secret == secret) {
