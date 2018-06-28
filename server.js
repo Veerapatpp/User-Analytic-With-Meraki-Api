@@ -8,15 +8,12 @@
 // This script listens for the uri {request_uri}:port/meraki
 //
 var listenport = 9201; //TCP listening port
-var secret = "1234"; //Secret that you chose in the Meraki dashboard
-var validator = "54b9771bb5b1cfb681332f7a471b7e96a94ee7ce"; //Validator string that is shown in the Meraki dashboard
+var secret = "1234";	//Secret that you chose in the Meraki dashboard
+var validator = "54b9771bb5b1cfb681332f7a471b7e96a94ee7ce";	//Validator string that is shown in the Meraki dashboard
 var express = require('express');
 var app = express();
 var bodyParser = require('body-parser')
-var jsonParser = bodyParser.json()
 var server = require('http').Server(app)
-
-app.use(jsonParser)
 
 app.use(function (req, res, next) {
 res.header('Access-Control-Allow-Origin', '*')
@@ -32,7 +29,7 @@ console.log("sending validation")
 
 app.post('/meraki', function(req, res){
 try {
-var jsoned = req.body.data;
+var jsoned = JSON.parse(req.body.data);
 if (jsoned.secret == secret) {
 for (i=0; i<jsoned.probing.length; i++) {
 console.log("client " + jsoned.probing[i].client_mac + " seen on ap " + jsoned.probing[i].ap_mac + " with rssi " + jsoned.probing[i].rssi + " at " + jsoned.probing[i].last_seen);
