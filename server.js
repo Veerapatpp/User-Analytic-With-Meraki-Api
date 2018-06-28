@@ -22,25 +22,30 @@ res.header('Access-Control-Allow-Origin', '*')
 res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept')
 next()
 })
-
+var jsoned = req.body.data;
 app.get('/meraki', function(req, res){
 res.send(validator);
 console.log("sending validation")
 });
 
+app.get('/test', function(req, res){
+    res.send(jsoned);
+    // console.log("sending validation")
+    });
 
 app.post('/meraki', function(req, res){
 try {
-var jsoned = req.body.data;
+jsoned = req.body.data;
 console.log(jsoned)
-console.log("secret"+jsoned.secret)
-if (jsoned.secret == secret) {
-for (i=0; i<jsoned.probing.length; i++) {
-console.log("client " + jsoned.probing[i].client_mac + " seen on ap " + jsoned.probing[i].ap_mac + " with rssi " + jsoned.probing[i].rssi + " at " + jsoned.probing[i].last_seen);
-}
-} else {
-console.log("invalid secret from " + req.connection.remoteAddress);
-}
+//console.log("secret"+jsoned.secret)
+// if (jsoned.secret == secret) {
+// for (i=0; i<jsoned.probing.length; i++) {
+// console.log("client " + jsoned.probing[i].client_mac + " seen on ap " + jsoned.probing[i].ap_mac + " with rssi " + jsoned.probing[i].rssi + " at " + jsoned.probing[i].last_seen);
+// }
+// } else {
+// console.log("invalid secret from " + req.connection.remoteAddress);
+// }
+req.send(validator)
 } catch (e) {
 // An error has occured, handle it, by e.g. logging it
 console.log("Error. Likely caused by an invalid POST from " + req.connection.remoteAddress + ":");
