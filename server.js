@@ -22,7 +22,7 @@ res.header('Access-Control-Allow-Origin', '*')
 res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept')
 next()
 })
-var jsoned = req.body.data;
+var jsoned = {} ;
 app.get('/meraki', function(req, res){
 res.send(validator);
 console.log("sending validation")
@@ -45,7 +45,7 @@ console.log(jsoned)
 // } else {
 // console.log("invalid secret from " + req.connection.remoteAddress);
 // }
-req.send(validator)
+
 } catch (e) {
 // An error has occured, handle it, by e.g. logging it
 console.log("Error. Likely caused by an invalid POST from " + req.connection.remoteAddress + ":");
