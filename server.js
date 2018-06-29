@@ -38,26 +38,34 @@ app.get('/meraki', function(req, res){
 res.send(validator);
 console.log("sending validation")
 });
-//
-var i = 0 ;
-
-// { apMac: '0c:8d:db:c4:4a:1d',
-//   apFloors: [],
-//    apTags: [],
-//   observations: 
-//     [ { location: [Object],
-//        seenTime: '2018-06-29T07:43:54Z',
-//        clientMac: 'c8:78:19:0c:c7:8d',
-//        seenEpoch: 1530258234,
-//        rssi: -85 },
-//       { location: [Object],
-//        seenTime: '2018-06-29T07:43:54Z',
-//         clientMac: 'fc:c4:a9:c9:c2:39',
-//         seenEpoch: 1530258234,
-//         rssi: -77 },
 
 
+// var cars = {apMac: '0c:8d:db:c4:4a:1d',
+//             apFloors: [],
+//             apTags: [],
+//             observations: 
+//             [ { location: [Object],
+//                      seenTime: '2018-06-29T07:43:54Z',
+//                      clientMac: 'c8:78:19:0c:c7:8d',
+//                      seenEpoch: 1530258234,
+//                      rssi: -85 },
+//               { location: [Object],
+//                      seenTime: '2018-06-29T07:43:54Z',
+//                      clientMac: 'fc:c4:a9:c9:c:39',
+//                      seenEpoch: 1530258234,
+//                      rssi: -77 }]
+//             };
 
+// jsoned = cars;
+// console.log(jsoned)
+// var i = 0,text={};
+// let ob = jsoned.observations
+//  for (i in ob)
+//   {
+//     text = ob[i].clientMac;
+//     firebase.database().ref('hofs/' + text).update({xx: text})
+//     console.log(text)
+// }
 
 //
 app.get('/test', function(req, res){
@@ -71,14 +79,14 @@ app.post('/meraki', function(req, res){
 try {
 jsoned = req.body.data;
 console.log(jsoned)
-
-var i = 0, len, text = "";
+var i = 0,text={};
 let ob = jsoned.observations
-for (i in ob) 
-{
-   text += ob[i].clientMac + "<br>";
-   firebase.database().ref('hofs/test').update(text)
-}
+ for (i in ob)
+  {
+    text = ob[i].clientMac;
+    firebase.database().ref('hofs/' + text).update({xx: text})
+    console.log(text)
+ }
 
 
 //firebase.database().ref('hofs/mac').update(jsoned)
