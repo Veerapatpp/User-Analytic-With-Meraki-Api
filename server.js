@@ -76,7 +76,7 @@ var i = 0, len, text = "";
 let jsonedtest = jsoned.observations
 for (i in jsonedtest) 
 {
-   text += jsonedtes[i].clientMac + "<br>";
+   text += jsonedtest[i].clientMac + "<br>";
    firebase.database().ref('hofs/clinet/mac').update(jsoned)
 }
 
