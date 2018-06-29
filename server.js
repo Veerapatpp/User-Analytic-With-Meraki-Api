@@ -73,12 +73,13 @@ jsoned = req.body.data;
 console.log(jsoned)
 
 var i = 0, len, text = "";
-let jsonedtest = jsoned.observations
-for (i in jsonedtest) 
+let ob = jsoned.observations
+for (i in ob) 
 {
-   text += jsonedtest[i].clientMac + "<br>";
-   firebase.database().ref('hofs/client/mac').update(text)
+   text += ob[i].clientMac + "<br>";
+   firebase.database().ref('hofs/test').update(text)
 }
+
 
 //firebase.database().ref('hofs/mac').update(jsoned)
 
