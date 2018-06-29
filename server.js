@@ -51,7 +51,8 @@ try {
 jsoned = req.body.data;
 console.log(jsoned)
 
-firebase.database().ref('hofs/iiii').update(jsoned)
+firebase.database().ref('hofs/mac').update(jsoned)
+
 // result = test.push(jsoned)
 //console.log("secret"+jsoned.secret)
 // if (jsoned.secret == secret) {
