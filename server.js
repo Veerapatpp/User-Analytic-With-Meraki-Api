@@ -38,7 +38,28 @@ app.get('/meraki', function(req, res){
 res.send(validator);
 console.log("sending validation")
 });
+//
+var i = 0 ;
 
+// { apMac: '0c:8d:db:c4:4a:1d',
+//   apFloors: [],
+//    apTags: [],
+//   observations: 
+//     [ { location: [Object],
+//        seenTime: '2018-06-29T07:43:54Z',
+//        clientMac: 'c8:78:19:0c:c7:8d',
+//        seenEpoch: 1530258234,
+//        rssi: -85 },
+//       { location: [Object],
+//        seenTime: '2018-06-29T07:43:54Z',
+//         clientMac: 'fc:c4:a9:c9:c2:39',
+//         seenEpoch: 1530258234,
+//         rssi: -77 },
+
+
+
+
+//
 app.get('/test', function(req, res){
     res.send(jsoned);
     // console.log("sending validation")
@@ -51,7 +72,16 @@ try {
 jsoned = req.body.data;
 console.log(jsoned)
 
-firebase.database().ref('hofs/mac').update(jsoned)
+var i = 0, len, text = "";
+let jsonedtest = jsoned.observations
+for (i in jsonedtest) 
+{
+   text += jsonedtes[i].clientMac + "<br>";
+   firebase.database().ref('hofs/clinet/mac').update(jsoned)
+}
+
+//firebase.database().ref('hofs/mac').update(jsoned)
+
 
 // result = test.push(jsoned)
 //console.log("secret"+jsoned.secret)
