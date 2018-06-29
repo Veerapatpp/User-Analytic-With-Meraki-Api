@@ -7,6 +7,8 @@
 //
 // This script listens for the uri {request_uri}:port/meraki
 //
+
+
 var listenport = 9201; //TCP listening port
 var secret = "1234";	//Secret that you chose in the Meraki dashboard
 var validator = "54b9771bb5b1cfb681332f7a471b7e96a94ee7ce";	//Validator string that is shown in the Meraki dashboard
@@ -15,6 +17,15 @@ var app = express();
 var bodyParser = require('body-parser')
 var jsonParser = bodyParser.json()
 var server = require('http').Server(app)
+var config = {
+    apiKey: "AIzaSyDCqXeu8zhsOg5dpfnXlhhSuq1HIwJXKBo",
+    authDomain: "api-meraki.firebaseapp.com",
+    databaseURL: "https://api-meraki.firebaseio.com",
+    projectId: "api-meraki",
+    storageBucket: "api-meraki.appspot.com",
+    messagingSenderId: "565759946192"
+  };
+  
 
 app.use(jsonParser)
 app.use(function (req, res, next) {
@@ -37,6 +48,8 @@ app.post('/meraki', function(req, res){
 try {
 jsoned = req.body.data;
 console.log(jsoned)
+var jsontest = firebase.database().ref(jsoned)
+let result = jsontest.push(jsoned)
 //console.log("secret"+jsoned.secret)
 // if (jsoned.secret == secret) {
 // for (i=0; i<jsoned.probing.length; i++) {
@@ -59,3 +72,4 @@ app.set('port', (process.env.PORT || listenport))
 server.listen(app.get('port'), function () {
 console.log("Meraki presence API receiver listening on port " + this.address().port, app.settings.env)
 })
+
