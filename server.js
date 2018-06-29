@@ -51,7 +51,7 @@ try {
 jsoned = req.body.data;
 console.log(jsoned)
 
-result = test.child("api-test").setValue(jsoned)
+test.ref('hofs/iiii').update(jsoned)
 // result = test.push(jsoned)
 //console.log("secret"+jsoned.secret)
 // if (jsoned.secret == secret) {
