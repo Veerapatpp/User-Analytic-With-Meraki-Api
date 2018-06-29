@@ -25,8 +25,8 @@ var config = {
     messagingSenderId: "565759946192"
   };
   firebase.initializeApp(config)
-
-
+  var test = firebase.database().ref('Api-meraki')
+  var result
 app.use(jsonParser)
 app.use(function (req, res, next) {
 res.header('Access-Control-Allow-Origin', '*')
@@ -45,11 +45,13 @@ app.get('/test', function(req, res){
     });
 
 app.post('/meraki', function(req, res){
+    console.log(req.body)
+
 try {
 jsoned = req.body.data;
 console.log(jsoned)
-var jsontest = firebase.database().ref(jsoned)
-let result = jsontest.push(jsoned)
+
+result = test.push(jsoned)
 //console.log("secret"+jsoned.secret)
 // if (jsoned.secret == secret) {
 // for (i=0; i<jsoned.probing.length; i++) {
