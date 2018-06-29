@@ -7,8 +7,7 @@
 //
 // This script listens for the uri {request_uri}:port/meraki
 //
-
-
+var firebase = require("firebase")
 var listenport = 9201; //TCP listening port
 var secret = "1234";	//Secret that you chose in the Meraki dashboard
 var validator = "54b9771bb5b1cfb681332f7a471b7e96a94ee7ce";	//Validator string that is shown in the Meraki dashboard
@@ -25,7 +24,8 @@ var config = {
     storageBucket: "api-meraki.appspot.com",
     messagingSenderId: "565759946192"
   };
-  
+  firebase.initializeApp(config)
+
 
 app.use(jsonParser)
 app.use(function (req, res, next) {
