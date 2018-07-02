@@ -8,6 +8,12 @@
 // This script listens for the uri {request_uri}:port/meraki
 //
 var date = new Date();
+var monthNames = [
+    "January", "February", "March",
+    "April", "May", "June", "July",
+    "August", "September", "October",
+    "November", "December"
+  ];
   var day = date.getDate();
   var monthIndex = date.getMonth();
   var year = date.getFullYear();
@@ -96,7 +102,7 @@ let ob = jsoned.observations
 
 
     // }
-    firebase.database().ref('hofs/Clientmac/' +day+'/'+monthIndex+'/'+year+'/'+ text).update({xx: text})
+    firebase.database().ref('hofs/Clientmac/' +day+' '+ monthNames[monthIndex]+' '+year+'/'+ text).update({xx: text})
     //status can change in table
     console.log(text)
  
