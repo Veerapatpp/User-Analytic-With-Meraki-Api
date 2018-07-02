@@ -91,23 +91,25 @@ app.post('/meraki', function(req, res){
 try {
 jsoned = req.body.data;
 console.log(jsoned)
-var i = 0,text={},time={};
+var i = 0,text={},time={};ip={};
 let ob = jsoned.observations
  for (i in ob)
   {
 
     text = ob[i].clientMac;
     time = ob[i].seenTime;
+    ip = ob[i].ipv4;
     firebase.database().ref('hofs/Clientmac/' +day+' '+ monthNames[monthIndex]+' '+year+'/'+ text).update({Macaddress: text})
     firebase.database().ref('hofs/Clientmac/' +day+' '+ monthNames[monthIndex]+' '+year+'/'+ text).update({time: time})
-
+    firebase.database().ref('hofs/Clientmac/' +day+' '+ monthNames[monthIndex]+' '+year+'/'+ text).update({Ip: time})
+    
     // if(ob[i].clientMac == text)
     // // {
 
 
     // // }
     //status can change in table
-    console.log(text)
+    console.log(jsoned)
  
 }
 // { ipv4: '/192.168.1.217',
