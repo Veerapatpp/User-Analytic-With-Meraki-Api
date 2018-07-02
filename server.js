@@ -111,21 +111,32 @@ let ob = jsoned.observations
     text = ob[i].clientMac;
     time = ob[i].seenTime;
     ip = ob[i].ipv4;
-    firebase.database().ref('hofs/Clientmac/' +day+' '+ monthNames[monthIndex]+' '+year+'/'+ text).update({Macaddress: text})
+    Sum = 0;
+    firebase.database().ref('hofs/Clientmac/' +day+ monthNames[monthIndex]+year+'/'+ text).update({Macaddress: text})
     
     ip = ob[i].ipv4;
     if(ob[i].ipv4 == null )
     {
-        firebase.database().ref('hofs/Clientmac/' +day+' '+ monthNames[monthIndex]+' '+year+'/'+ text).update({IP: "No IP ",Status: "Offline"})
+        firebase.database().ref('hofs/Clientmac/' +day+ monthNames[monthIndex]+year+'/'+ text).update({IP: "No IP ",Status: "Offline"})
         console.log(ip)
     }
     else if (ob[i].ipv4 !== null)
     {
-        firebase.database().ref('hofs/Clientmac/' +day+' '+ monthNames[monthIndex]+' '+year+'/'+ text).update({IP: ip,Status: "Online"})
+        firebase.database().ref('hofs/Clientmac/' +day+ monthNames[monthIndex]+year+'/'+ text).update({IP: ip,Status: "Online"})
         console.log("connect ip "+ip)
     }
-    firebase.database().ref('hofs/Clientmac/' +day+' '+ monthNames[monthIndex]+' '+year+'/'+ text).update({Time: time})
-   
+    firebase.database().ref('hofs/Clientmac/' +day+ monthNames[monthIndex]+year+'/'+ text).update({Time: time})
+    
+    
+    var checkmac  = firebase.database().ref('hofs/Clientmac/' +day+ monthNames[monthIndex]+year+'/'+ text)
+    
+    if(checkmac == text){
+
+        firebase.database().ref('hofs/Clientmac/' +day+ monthNames[monthIndex]+year+'/'+ text).update({Sum: Sum})
+    
+    }
+    
+    //
     // if(ip == ob[i].ipv4){
     // firebase.database().ref('hofs/Clientmac/' +day+' '+ monthNames[monthIndex]+' '+year+'/'+ text).update({Ip: ip})
     // }
