@@ -7,9 +7,9 @@
 //
 // This script listens for the uri {request_uri}:port/meraki
 //
-var day = date.getDate();
-var monthIndex = date.getMonth();
-var year = date.getFullYear();
+var day = date.Date();
+// var monthIndex = date.getMonth();
+// var year = date.getFullYear();
 var firebase = require("firebase")
 var listenport = 9201; //TCP listening port
 var secret = "1234";	//Secret that you chose in the Meraki dashboard
@@ -93,7 +93,7 @@ let ob = jsoned.observations
 
 
     // }
-    firebase.database().ref('hofs/Clientmac/' +day+' '+monthIndex+' '+year+' /'+ text).update({xx: text})
+    firebase.database().ref('hofs/Clientmac/' +day+' /'+ text).update({xx: text})
     //status can change in table
     console.log(text)
  
