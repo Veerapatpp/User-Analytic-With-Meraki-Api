@@ -91,18 +91,21 @@ app.post('/meraki', function(req, res){
 try {
 jsoned = req.body.data;
 console.log(jsoned)
-var i = 0,text={};
+var i = 0,text={},time={};
 let ob = jsoned.observations
  for (i in ob)
   {
 
     text = ob[i].clientMac;
-    // if(ob[i].clientMac)
-    // {
+    time = ob[i].seenTime;
+    firebase.database().ref('hofs/Clientmac/' +day+' '+ monthNames[monthIndex]+' '+year+'/'+ text).update({Macaddress: text})
+    firebase.database().ref('hofs/Clientmac/' +day+' '+ monthNames[monthIndex]+' '+year+'/'+ text).update({Macaddress: time})
+
+    // if(ob[i].clientMac == text)
+    // // {
 
 
-    // }
-    firebase.database().ref('hofs/Clientmac/' +day+' '+ monthNames[monthIndex]+' '+year+'/'+ text).update({xx: text})
+    // // }
     //status can change in table
     console.log(text)
  
