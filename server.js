@@ -128,13 +128,13 @@ let ob = jsoned.observations
     firebase.database().ref('hofs/Clientmac/' +day+ monthNames[monthIndex]+year+'/'+ text).update({Time: time})
     
     
-    var checkmac  = firebase.database().ref('hofs/Clientmac/' +day+ monthNames[monthIndex]+year+'/'+ text).update({Macaddress: text})
+    // var checkmac  = firebase.database().ref('hofs/Clientmac/' +day+ monthNames[monthIndex]+year+'/'+ text)
     
-    if(checkmac == text){
+    // if(checkmac == text){
 
-        firebase.database().ref('hofs/Clientmac/' +day+ monthNames[monthIndex]+year+'/'+ text).update({Sum: Sum})
+    //     firebase.database().ref('hofs/Clientmac/' +day+ monthNames[monthIndex]+year+'/'+ text).update({Sum: Sum})
     
-    }
+    // }
     
     //
     // if(ip == ob[i].ipv4){
