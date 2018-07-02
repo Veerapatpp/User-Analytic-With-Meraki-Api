@@ -83,10 +83,40 @@ var i = 0,text={};
 let ob = jsoned.observations
  for (i in ob)
   {
+
     text = ob[i].clientMac;
-    firebase.database().ref('hofs/' + text).update({xx: text})
+    // if(ob[i].ipv4)
+    // {
+
+
+    // }
+    firebase.database().ref('hofs/ClientmaC' + text).update({xx: text})
+    //status can change in table
     console.log(text)
- }
+ 
+}
+// { ipv4: '/192.168.1.217',
+// 2018-06-29T10:26:28.044000+00:00 app[web.1]:        location: [Object],
+// 2018-06-29T10:26:28.044002+00:00 app[web.1]:        seenTime: '2018-06-29T10:26:27Z',
+// 2018-06-29T10:26:28.044003+00:00 app[web.1]:        ssid: 'cafe@playtorium',
+// 2018-06-29T10:26:28.044005+00:00 app[web.1]:        os: 'Mac OS X',
+// 2018-06-29T10:26:28.044006+00:00 app[web.1]:        clientMac: '1c:36:bb:2b:de:3c',
+// 2018-06-29T10:26:28.044008+00:00 app[web.1]:        seenEpoch: 1530267987,
+// 2018-06-29T10:26:28.044009+00:00 app[web.1]:        rssi: 47,
+// 2018-06-29T10:26:28.044011+00:00 app[web.1]:        ipv6: null,
+// 2018-06-29T10:26:28.044012+00:00 app[web.1]:        manufacturer: 'Apple' },
+// 2018-06-29T10:26:28.044014+00:00 app[web.1]:      { ipv4: null,
+// 2018-06-29T10:26:28.044015+00:00 app[web.1]:        location: [Object],
+// 2018-06-29T10:26:28.044016+00:00 app[web.1]:        seenTime: '2018-06-29T10:25:59Z',
+// 2018-06-29T10:26:28.044018+00:00 app[web.1]:        ssid: null,
+// 2018-06-29T10:26:28.044019+00:00 app[web.1]:        os: null,
+// 2018-06-29T10:26:28.044021+00:00 app[web.1]:        clientMac: '04:d6:aa:b3:0b:da',
+// 2018-06-29T10:26:28.044022+00:00 app[web.1]:        seenEpoch: 1530267959,
+// 2018-06-29T10:26:28.044024+00:00 app[web.1]:        rssi: 23,
+// 2018-06-29T10:26:28.044025+00:00 app[web.1]:        ipv6: null,
+// 2018-06-29T10:26:28.044027+00:00 app[web.1]:        manufacturer: 'Samsung(THAILAND)' },
+
+
 
 
 //firebase.database().ref('hofs/mac').update(jsoned)
