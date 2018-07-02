@@ -7,7 +7,7 @@
 //
 // This script listens for the uri {request_uri}:port/meraki
 //
-var day = date.Date();
+var day = new Date();
 // var monthIndex = date.getMonth();
 // var year = date.getFullYear();
 var firebase = require("firebase")
