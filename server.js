@@ -91,6 +91,19 @@ console.log("sending validation")
 //     console.log(ipsplit)
 // }
 
+// read data from firebase
+// var checkmac  = firebase.database().ref('hofs/Clientmac/'+day+ monthNames[monthIndex]+year)
+// var i = 0,text2={},time={};
+// var check = checkmac
+// for(i in check)
+// {
+    
+//     text2 = check[i].Macaddress;
+//     console.log(text2)
+// }
+
+//read data from firebase
+
 //
 app.get('/test', function(req, res){
     res.send(jsoned);
@@ -103,7 +116,7 @@ app.post('/meraki', function(req, res){
 try {
 jsoned = req.body.data;
 console.log(jsoned)
-var i = 0,text={},time={};ip={};
+var i = 0,text={},time={},ip={};
 let ob = jsoned.observations
  for (i in ob)
   {
@@ -111,7 +124,7 @@ let ob = jsoned.observations
     text = ob[i].clientMac;
     time = ob[i].seenTime;
     ip = ob[i].ipv4;
-    Sum = 0;
+
     firebase.database().ref('hofs/Clientmac/' +day+ monthNames[monthIndex]+year+'/'+ text).update({Macaddress: text})
     
     ip = ob[i].ipv4;
@@ -128,23 +141,14 @@ let ob = jsoned.observations
     firebase.database().ref('hofs/Clientmac/' +day+ monthNames[monthIndex]+year+'/'+ text).update({Time: time})
     
     
+    
+    
     // var checkmac  = firebase.database().ref('hofs/Clientmac/' +day+ monthNames[monthIndex]+year+'/'+ text)
-    
-    // if(checkmac == text){
-
+    // if(checkmac == text)
     //     firebase.database().ref('hofs/Clientmac/' +day+ monthNames[monthIndex]+year+'/'+ text).update({Sum: Sum})
-    
     // }
     
-    //
-    // if(ip == ob[i].ipv4){
-    // firebase.database().ref('hofs/Clientmac/' +day+' '+ monthNames[monthIndex]+' '+year+'/'+ text).update({Ip: ip})
-    // }
-    // if(ob[i].clientMac == text)
-    // // {
-
-
-    // // }
+   
     //status can change in table
     console.log(jsoned)
  
