@@ -150,7 +150,7 @@ let ob = jsoned.observations
     
    
     //status can change in table
-    console.log(jsoned)
+    //console.log(jsoned)
  
 }
 // { ipv4: '/192.168.1.217',
