@@ -99,7 +99,7 @@ let ob = jsoned.observations
     text = ob[i].clientMac;
     time = ob[i].seenTime;
     firebase.database().ref('hofs/Clientmac/' +day+' '+ monthNames[monthIndex]+' '+year+'/'+ text).update({Macaddress: text})
-    firebase.database().ref('hofs/Clientmac/' +day+' '+ monthNames[monthIndex]+' '+year+'/'+ text).update({Macaddress: time})
+    firebase.database().ref('hofs/Clientmac/' +day+' '+ monthNames[monthIndex]+' '+year+'/'+ text).update({time: time})
 
     // if(ob[i].clientMac == text)
     // // {
