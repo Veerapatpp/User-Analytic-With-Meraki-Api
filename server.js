@@ -124,7 +124,7 @@ let ob = jsoned.observations
         firebase.database().ref('hofs/Clientmac/' +day+' '+ monthNames[monthIndex]+' '+year+'/'+ text).update({IP: ip,Status: "Online"})
         console.log("connect ip "+ip)
     }
-    firebase.database().ref('hofs/Clientmac/' +day+' '+ monthNames[monthIndex]+' '+year+'/'+ text).update({time: time})
+    firebase.database().ref('hofs/Clientmac/' +day+' '+ monthNames[monthIndex]+' '+year+'/'+ text).update({Time: time})
    
     // if(ip == ob[i].ipv4){
     // firebase.database().ref('hofs/Clientmac/' +day+' '+ monthNames[monthIndex]+' '+year+'/'+ text).update({Ip: ip})
