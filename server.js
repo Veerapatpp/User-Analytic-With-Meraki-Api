@@ -7,7 +7,10 @@
 //
 // This script listens for the uri {request_uri}:port/meraki
 //
-var day = new Date("MM/DD/YYYY");
+var date = new Date();
+  var day = date.getDate();
+  var monthIndex = date.getMonth();
+  var year = date.getFullYear();
 // var monthIndex = date.getMonth();
 // var year = date.getFullYear();
 var firebase = require("firebase")
@@ -93,7 +96,7 @@ let ob = jsoned.observations
 
 
     // }
-    firebase.database().ref('hofs/Clientmac/' +day+' /'+ text).update({xx: text})
+    firebase.database().ref('hofs/Clientmac/' +day+'/'+monthIndex+'/'+year+'/'+ text).update({xx: text})
     //status can change in table
     console.log(text)
  
