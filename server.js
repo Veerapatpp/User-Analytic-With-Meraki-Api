@@ -57,11 +57,13 @@ console.log("sending validation")
 //             apTags: [],
 //             observations: 
 //             [ { location: [Object],
+//                     ///\ ipv4 : '192.168.1.1',
 //                      seenTime: '2018-06-29T07:43:54Z',
 //                      clientMac: 'c8:78:19:0c:c7:8d',
 //                      seenEpoch: 1530258234,
 //                      rssi: -85 },
 //               { location: [Object],
+//                       ipv4 : '192.168.1.2',
 //                      seenTime: '2018-06-29T07:43:54Z',
 //                      clientMac: 'fc:c4:a9:c9:c:39',
 //                      seenEpoch: 1530258234,
@@ -69,14 +71,23 @@ console.log("sending validation")
 //             };
 
 // jsoned = cars;
-// console.log(jsoned)
+// //console.log(jsoned)
 // var i = 0,text={};
 // let ob = jsoned.observations
 //  for (i in ob)
 //   {
-//     text = ob[i].clientMac;
-//     firebase.database().ref('hofs/' + text).update({xx: text})
-//     console.log(text)
+//     //text = ob[i].clientMac;
+//     ip = ob[i].ipv4;
+//     if(ob[i].ipv4 == null )
+//     {
+//         console.log(ip)
+//     }
+//     else if (ob[i].ipv4 !== null)
+//     {
+//         console.log(ip)
+//     }
+//      firebase.database().ref('hofs/' + text).update({xx: text})
+//     console.log(ip)
 // }
 
 //
@@ -101,6 +112,18 @@ let ob = jsoned.observations
     ip = ob[i].ipv4;
     firebase.database().ref('hofs/Clientmac/' +day+' '+ monthNames[monthIndex]+' '+year+'/'+ text).update({Macaddress: text})
     firebase.database().ref('hofs/Clientmac/' +day+' '+ monthNames[monthIndex]+' '+year+'/'+ text).update({time: time})
+    ip = ob[i].ipv4;
+    if(ob[i].ipv4 == null )
+    {
+        firebase.database().ref('hofs/Clientmac/' +day+' '+ monthNames[monthIndex]+' '+year+'/'+ text).update({Status: "Offline"})
+    }
+    else if (ob[i].ipv4 !== null)
+    {
+        firebase.database().ref('hofs/Clientmac/' +day+' '+ monthNames[monthIndex]+' '+year+'/'+ text).update({IP: ip})
+        firebase.database().ref('hofs/Clientmac/' +day+' '+ monthNames[monthIndex]+' '+year+'/'+ text).update({Status: "Offline"})
+    }
+   
+   
     // if(ip == ob[i].ipv4){
     // firebase.database().ref('hofs/Clientmac/' +day+' '+ monthNames[monthIndex]+' '+year+'/'+ text).update({Ip: ip})
     // }
