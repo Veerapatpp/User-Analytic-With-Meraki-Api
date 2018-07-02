@@ -115,13 +115,12 @@ let ob = jsoned.observations
     ip = ob[i].ipv4;
     if(ob[i].ipv4 == null )
     {
-        firebase.database().ref('hofs/Clientmac/' +day+' '+ monthNames[monthIndex]+' '+year+'/'+ text).update({Status: "Offline"})
+        firebase.database().ref('hofs/Clientmac/' +day+' '+ monthNames[monthIndex]+' '+year+'/'+ text).update({IP: "No Ip "},{Status: "Offline"})
         console.log(ip)
     }
     else if (ob[i].ipv4 !== null)
     {
-        firebase.database().ref('hofs/Clientmac/' +day+' '+ monthNames[monthIndex]+' '+year+'/'+ text).update({IP: ip})
-        firebase.database().ref('hofs/Clientmac/' +day+' '+ monthNames[monthIndex]+' '+year+'/'+ text).update({Status: "Online"})
+        firebase.database().ref('hofs/Clientmac/' +day+' '+ monthNames[monthIndex]+' '+year+'/'+ text).update({IP: ip},{Status: "Online"})
         console.log("connect ip "+ip)
     }
    
