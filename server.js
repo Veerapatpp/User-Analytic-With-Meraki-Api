@@ -85,9 +85,9 @@ let ob = jsoned.observations
   {
 
     text = ob[i].clientMac;
-    // if(ob[i].ipv4)
+    // if(ob[i].clientMac)
     // {
-
+            
 
     // }
     firebase.database().ref('hofs/Clientmac/' + text).update({xx: text})
