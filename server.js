@@ -90,7 +90,7 @@ let ob = jsoned.observations
 
 
     // }
-    firebase.database().ref('hofs/ClientmaC' + text).update({xx: text})
+    firebase.database().ref('hofs/Clientmac/' + text).update({xx: text})
     //status can change in table
     console.log(text)
  
