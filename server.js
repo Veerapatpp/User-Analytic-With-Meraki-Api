@@ -80,7 +80,7 @@ console.log("sending validation")
 //     // }
 //     //  firebase.database().ref('hofs/' + text).update({xx: text})
 //     console.log(ipsplit)
-console.log(day+monthNames[monthIndex]+year)
+
 // read data from firebase
 // var checkmac  = firebase.database().ref('hofs/Clientmac/'+day+ monthNames[monthIndex]+year)
 // var i = 0,text2={},time={};
