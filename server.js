@@ -7,16 +7,7 @@
 //
 // This script listens for the uri {request_uri}:port/meraki
 //
-var date = new Date();
-var monthNames = [
-    "January", "February", "March",
-    "April", "May", "June", "July",
-    "August", "September", "October",
-    "November", "December"
-  ];
-  var day = date.getDate();
-  var monthIndex = date.getMonth();
-  var year = date.getFullYear();
+
 // var monthIndex = date.getMonth();
 // var year = date.getFullYear();
 var firebase = require("firebase")
@@ -89,8 +80,7 @@ console.log("sending validation")
 //     // }
 //     //  firebase.database().ref('hofs/' + text).update({xx: text})
 //     console.log(ipsplit)
-// }
-
+console.log(day+monthNames[monthIndex]+year)
 // read data from firebase
 // var checkmac  = firebase.database().ref('hofs/Clientmac/'+day+ monthNames[monthIndex]+year)
 // var i = 0,text2={},time={};
@@ -98,6 +88,14 @@ console.log("sending validation")
 // for(i in check)
 // {
     
+
+
+    // var checkmac = firebase.auth().currentUser.uid;
+    // return firebase.database().ref('/Clientmac/' + checkmac).once('value').then(function(snapshot) {
+    // var username = (snapshot.val() && snapshot.val().username) || 'Anonymous';});
+    // console.log(username)
+
+
 //     text2 = check[i].Macaddress;
 //     console.log(text2)
 // }
@@ -114,6 +112,17 @@ app.post('/meraki', function(req, res){
     console.log(req.body)
 
 try {
+
+ var date = new Date();
+ var monthNames = [
+    "January", "February", "March",
+    "April", "May", "June", "July",
+    "August", "September", "October",
+    "November", "December"
+  ];
+var day = date.getDate();
+var monthIndex = date.getMonth();
+var year = date.getFullYear();
 jsoned = req.body.data;
 console.log(jsoned)
 var i = 0,text={},time={},ip={};
@@ -143,7 +152,8 @@ let ob = jsoned.observations
     
     
     
-    // var checkmac  = firebase.database().ref('hofs/Clientmac/' +day+ monthNames[monthIndex]+year+'/'+ text)
+
+    //
     // if(checkmac == text)
     //     firebase.database().ref('hofs/Clientmac/' +day+ monthNames[monthIndex]+year+'/'+ text).update({Sum: Sum})
     // }
