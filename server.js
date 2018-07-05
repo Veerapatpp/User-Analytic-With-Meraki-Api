@@ -10,6 +10,7 @@
 
 // var monthIndex = date.getMonth();
 // var year = date.getFullYear();
+
 var firebase = require("firebase")
 var listenport = 9201; //TCP listening port
 var secret = "1234";	//Secret that you chose in the Meraki dashboard
@@ -19,6 +20,7 @@ var app = express();
 var bodyParser = require('body-parser')
 var jsonParser = bodyParser.json()
 var server = require('http').Server(app)
+
 var config = {
     apiKey: "AIzaSyDCqXeu8zhsOg5dpfnXlhhSuq1HIwJXKBo",
     authDomain: "api-meraki.firebaseapp.com",
@@ -29,6 +31,7 @@ var config = {
   };
   firebase.initializeApp(config)
   var test = firebase.database().ref('Api-meraki')
+  var checkmac = firebase.database().ref("hofs/");
   var result
 app.use(jsonParser)
 app.use(function (req, res, next) {
@@ -63,46 +66,94 @@ console.log("sending validation")
 
 // jsoned = cars;
 // //console.log(jsoned)
-// var i = 0,text={};
-// let ob = jsoned.observations
+//  var i = 0,text={};
+//  let ob = cars.observations
 //  for (i in ob)
 //   {
-//     //text = ob[i].clientMac;
-//     ip = ob[i].ipv4;
-//     var ipsplit = ip.split(' ');
-//     // if(ob[i].ipv4 == null )
-//     // {
-//     //     console.log(ip)
-//     // }
-//     // else if (ob[i].ipv4 !== null)
-//     // {
-//     //     console.log(ip)
-//     // }
+    //text = ob[i].clientMac;
+    // ip = ob[i].ipv4;
+    // console.log(ob[i].clientMac)
+    // if(ob[i].ipv4 == null )
+    // {
+    //     console.log(ip)
+    // }
+    // else if (ob[i].ipv4 !== null)
+    // {
+    //     console.log(ip)
+    // }
+  //}
 //     //  firebase.database().ref('hofs/' + text).update({xx: text})
 //     console.log(ipsplit)
 
+// var database = firebase.database();
+//       database.ref("app/").once('child_added', function(snapshot){
+//             if(snapshot.exists()){
+//                 var content = '';
+//                 snapshot.forEach(function(data){
+//                     var val = data.val();
+//                     console.log(data.val());
+//                     console.log(data.getKey());
+                    
+//                 });
 // read data from firebase
-// var checkmac  = firebase.database().ref('hofs/Clientmac/'+day+ monthNames[monthIndex]+year)
+
+
+
+// checkmac
+//console.log(checkmac)
+// checkmac.once('child_added', function(snapshot){
+    
+//       if(snapshot.exists()){
+//           var content = '';
+//           snapshot.forEach(function(Clientmac){
+//               var val = Clientmac.val();
+//              // console.log(val);
+//               var i = 0;
+              
+//              for (i in val)
+//              {
+
+//                 console.log(val[i].Macaddress)
+                
+
+//              }
+//               //console.log(Clientmac.getKey());
+              
+//           });
+          
+         
+//       }
+//            //   console.log(checkmac)
+
+// });
+
+
+ // console.log(checkmac)
 // var i = 0,text2={},time={};
 // var check = checkmac
 // for(i in check)
 // {
     
+  //var checkmac = firebase.database().ref('hofs/Clientmac/')
+  //  console.log(checkmac)
+  //  var i = 0,text={},time={},ip={};
+//let ob = checkmac
+//text = checkmac.clientMac;
+//console.log(text)
+//  for (i in ob)
+//   {
 
+//     text = ob[i]._database;
+//     time = ob[i].seenTime;
+//     console.log(text)
+   
+//   }
+    
 
-    // var checkmac = firebase.auth().currentUser.uid;
-    // return firebase.database().ref('/Clientmac/' + checkmac).once('value').then(function(snapshot) {
-    // var username = (snapshot.val() && snapshot.val().username) || 'Anonymous';});
-    // console.log(username)
-
-
-//     text2 = check[i].Macaddress;
-//     console.log(text2)
 // }
 
-//read data from firebase
 
-//
+
 app.get('/test', function(req, res){
     res.send(jsoned);
     // console.log("sending validation")
@@ -142,28 +193,53 @@ let ob = jsoned.observations
         firebase.database().ref('hofs/Clientmac/' +day+ monthNames[monthIndex]+year+'/'+ text).update({IP: "No IP ",Status: "Offline"})
         console.log(ip)
     }
-    else if (ob[i].ipv4 !== null)
+    else if (ob[i].ipv4 != null)
     {
         firebase.database().ref('hofs/Clientmac/' +day+ monthNames[monthIndex]+year+'/'+ text).update({IP: ip,Status: "Online"})
         console.log("connect ip "+ip)
     }
-    firebase.database().ref('hofs/Clientmac/' +day+ monthNames[monthIndex]+year+'/'+ text).update({Time: time})
+    firebase.database().ref('hofs/Clientmac/' +day+ monthNames[monthIndex]+year+'/'+ text).update({Time: time})  
+   
+    checkmac.once('child_added', function(snapshot){
     
-    
-    
-    
+        if(snapshot.exists()){
+            var content = '';
+            snapshot.forEach(function(Clientmac){
+                var val = Clientmac.val();
+               // console.log(val);
+                var i = 0;
+                
+               for (i in val)
+               {
+  
+                  console.log(val[i].Macaddress)
+                  if(val[i].Macaddress == text)
+                  {
 
-    //
+                    firebase.database().ref('hofs/Clientmac/' +day+ monthNames[monthIndex]+year+'/'+ text).update({Sum: "1"})
+
+                  }
+                  
+  
+               }
+                //console.log(Clientmac.getKey());
+                
+            });
+            
+           
+        }
+             //   console.log(checkmac)
+  
+  });
     // if(checkmac == text)
     //     firebase.database().ref('hofs/Clientmac/' +day+ monthNames[monthIndex]+year+'/'+ text).update({Sum: Sum})
     // }
     
-   
     //status can change in table
-    //console.log(jsoned)
+   // console.log(jsoned)
  
 }
-// { ipv4: '/192.168.1.217',
+// {                                                   ipv4: '/192.168.1.217',
 // 2018-06-29T10:26:28.044000+00:00 app[web.1]:        location: [Object],
 // 2018-06-29T10:26:28.044002+00:00 app[web.1]:        seenTime: '2018-06-29T10:26:27Z',
 // 2018-06-29T10:26:28.044003+00:00 app[web.1]:        ssid: 'cafe@playtorium',
@@ -184,21 +260,6 @@ let ob = jsoned.observations
 // 2018-06-29T10:26:28.044025+00:00 app[web.1]:        ipv6: null,
 // 2018-06-29T10:26:28.044027+00:00 app[web.1]:        manufacturer: 'Samsung(THAILAND)' },
 
-
-
-
-//firebase.database().ref('hofs/mac').update(jsoned)
-
-
-// result = test.push(jsoned)
-//console.log("secret"+jsoned.secret)
-// if (jsoned.secret == secret) {
-// for (i=0; i<jsoned.probing.length; i++) {
-// console.log("client " + jsoned.probing[i].client_mac + " seen on ap " + jsoned.probing[i].ap_mac + " with rssi " + jsoned.probing[i].rssi + " at " + jsoned.probing[i].last_seen);
-// }
-// } else {
-// console.log("invalid secret from " + req.connection.remoteAddress);
-// }
 res.end()
 } catch (e) {
 // An error has occured, handle it, by e.g. logging it
