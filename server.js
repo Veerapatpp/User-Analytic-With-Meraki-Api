@@ -212,7 +212,7 @@ let ob = jsoned.observations
                for (i in val)
                {
   
-                  console.log(val[i].Macaddress)
+                 // console.log(val[i].Macaddress)
                   if(val[i].Macaddress == text)
                   {
 
