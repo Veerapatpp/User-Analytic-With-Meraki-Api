@@ -45,7 +45,12 @@ res.send(validator);
 console.log("sending validation")
 });
 
+for (var i = 0; i < 5; i++){
+    console.log(i)
 
+
+
+}
 // var cars = {apMac: '0c:8d:db:c4:4a:1d',
 //             apFloors: [],
 //             apTags: [],
