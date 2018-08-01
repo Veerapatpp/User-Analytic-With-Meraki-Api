@@ -6,10 +6,6 @@
 // When it sends the presence information, it will also send the secret. This script validates that the secret is correct prior to parsing the data.
 //
 // This script listens for the uri {request_uri}:port/meraki
-//
-
-// var monthIndex = date.getMonth();
-// var year = date.getFullYear();
 
 var firebase = require("firebase")
 var listenport = 9201; //TCP listening port
@@ -21,16 +17,28 @@ var bodyParser = require('body-parser')
 var jsonParser = bodyParser.json()
 var server = require('http').Server(app)
 
+// var config = {
+//     apiKey: "AIzaSyDCqXeu8zhsOg5dpfnXlhhSuq1HIwJXKBo",
+//     authDomain: "api-meraki.firebaseapp.com",
+//     databaseURL: "https://api-meraki.firebaseio.com",
+//     projectId: "api-meraki",
+//     storageBucket: "api-meraki.appspot.com",
+//     messagingSenderId: "565759946192"
+//   };
+//   firebase.initializeApp(config)
 var config = {
-    apiKey: "AIzaSyDCqXeu8zhsOg5dpfnXlhhSuq1HIwJXKBo",
-    authDomain: "api-meraki.firebaseapp.com",
-    databaseURL: "https://api-meraki.firebaseio.com",
-    projectId: "api-meraki",
-    storageBucket: "api-meraki.appspot.com",
-    messagingSenderId: "565759946192"
+    apiKey: "AIzaSyD4FDjeBsK8QomF2_Eh_TyRKdyCGb5IdpE",
+    authDomain: "project-meraki.firebaseapp.com",
+    databaseURL: "https://project-meraki.firebaseio.com",
+    projectId: "project-meraki",
+    storageBucket: "project-meraki.appspot.com",
+    messagingSenderId: "1012307053096"
   };
-  firebase.initializeApp(config)
-  var test = firebase.database().ref('Api-meraki')
+  firebase.initializeApp(config);
+
+//
+//   var test = firebase.database().ref('Api-meraki')
+var test = firebase.database().ref('project-meraki')
   var checkmac = firebase.database().ref("hofs/");
   var result
 app.use(jsonParser)
