@@ -211,6 +211,7 @@ let ob = jsoned.observations
         console.log("connect ip "+ip)
     }
     firebase.database().ref('hofs/Clientmac/' +day+ monthNames[monthIndex]+year+'/'+ text).update({Time: time})  
+    console.log(ob[i].location)
    
     checkmac.once('child_added', function(snapshot){
     
