@@ -200,7 +200,6 @@ let ob = jsoned.observations
 
     firebase.database().ref('hofs/Clientmac/' +day+ monthNames[monthIndex]+year+'/'+ text).update({Macaddress: text})
     
-    ip = ob[i].ipv4;
     if(ob[i].ipv4 == null )
     {
         firebase.database().ref('hofs/Clientmac/' +day+ monthNames[monthIndex]+year+'/'+ text).update({IP: "No IP ",Status: "Offline"})
@@ -231,6 +230,7 @@ let ob = jsoned.observations
 
                     firebase.database().ref('hofs/Clientmac/' +day+ monthNames[monthIndex]+year+'/'+ text).update({Sum: "1"})
 
+                    
                   }
                   
   
