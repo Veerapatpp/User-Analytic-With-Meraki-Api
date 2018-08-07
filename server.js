@@ -211,8 +211,7 @@ let ob = jsoned.observations
         console.log("connect ip "+ip)
     }
     firebase.database().ref('hofs/Clientmac/' +day+ monthNames[monthIndex]+year+'/'+ text).update({Time: time})  
-    var sum = 0;
-    firebase.database().ref('hofs/Clientmac/' +day+ monthNames[monthIndex]+year+'/'+ text).update({Sum: sum})
+    
    
     checkmac.once('child_added', function(snapshot){
     
@@ -229,7 +228,8 @@ let ob = jsoned.observations
                  // console.log(val[i].Macaddress)
                   if(val[i].Macaddress == text)
                   {
-                   
+                    var sum = 0;
+                    firebase.database().ref('hofs/Clientmac/' +day+ monthNames[monthIndex]+year+'/'+ text).update({Sum: sum})
                     var ChangeSUM = val[i].sum + 1;
 
                     firebase.database().ref('hofs/Clientmac/' +day+ monthNames[monthIndex]+year+'/'+ text).update({Sum: ChangeSUM})
