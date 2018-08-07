@@ -234,7 +234,7 @@ let ob = jsoned.observations
 
                     firebase.database().ref('hofs/Clientmac/' +day+ monthNames[monthIndex]+year+'/'+ text).update({Sum: ChangeSUM})
 
-                    
+                    console.log(val[i].sum)
                   }
                   
   
