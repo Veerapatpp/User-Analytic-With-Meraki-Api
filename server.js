@@ -38,7 +38,7 @@ var config = {
 
 //
 //   var test = firebase.database().ref('Api-meraki')
-var test = firebase.database().ref('project-meraki')
+  var test = firebase.database().ref('project-meraki')
   var checkmac = firebase.database().ref("hofs/");
   var result
 app.use(jsonParser)
@@ -196,6 +196,8 @@ let ob = jsoned.observations
 
     text = ob[i].clientMac;
     time = ob[i].seenTime;
+    os = ob[i].os;
+    manufacturer = ob[i].manufacturer;
     ip = ob[i].ipv4;
 
     firebase.database().ref('hofs/Clientmac/' +day+ monthNames[monthIndex]+year+'/'+ text).update({Macaddress: text})
@@ -211,7 +213,8 @@ let ob = jsoned.observations
         console.log("connect ip "+ip)
     }
     firebase.database().ref('hofs/Clientmac/' +day+ monthNames[monthIndex]+year+'/'+ text).update({Time: time})  
-   
+    firebase.database().ref('hofs/Clientmac/' +day+ monthNames[monthIndex]+year+'/'+ text).update({OS: os})
+    firebase.database().ref('hofs/Clientmac/' +day+ monthNames[monthIndex]+year+'/'+ text).update({manufacturer: manufacturer})    
     checkmac.once('child_added', function(snapshot){
     
         if(snapshot.exists()){
@@ -233,25 +236,13 @@ let ob = jsoned.observations
 
                     
                   }
-                  
-  
                }
-                //console.log(Clientmac.getKey());
-                
+                //console.log(Clientmac.getKey());   
             });
-            
-           
         }
              //   console.log(checkmac)
-  
   });
-    // if(checkmac == text)
-    //     firebase.database().ref('hofs/Clientmac/' +day+ monthNames[monthIndex]+year+'/'+ text).update({Sum: Sum})
-    // }
-    
-    //status can change in table
-   // console.log(jsoned)
- 
+
 }
 // {                                                   ipv4: '/192.168.1.217',
 // 2018-06-29T10:26:28.044000+00:00 app[web.1]:        location: [Object],
