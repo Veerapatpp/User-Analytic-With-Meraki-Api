@@ -214,7 +214,12 @@ let ob = jsoned.observations
     }
     firebase.database().ref('hofs/Clientmac/' +day+ monthNames[monthIndex]+year+'/'+ text).update({Time: time})  
     firebase.database().ref('hofs/Clientmac/' +day+ monthNames[monthIndex]+year+'/'+ text).update({OS: os})
-    firebase.database().ref('hofs/Clientmac/' +day+ monthNames[monthIndex]+year+'/'+ text).update({manufacturer: manufacturer})    
+    if(ob[i].os == null )
+    {
+        firebase.database().ref('hofs/Clientmac/' +day+ monthNames[monthIndex]+year+'/'+ text).update({OS: "Null"})
+        console.log(ip)
+    }
+    firebase.database().ref('hofs/Clientmac/' +day+ monthNames[monthIndex]+year+'/'+ text).update({Manufacturer: manufacturer})    
     checkmac.once('child_added', function(snapshot){
     
         if(snapshot.exists()){
